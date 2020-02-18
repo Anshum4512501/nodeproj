@@ -1,25 +1,26 @@
-let sequelize=require('../configdb/postgresconnection.js')
-let log = console.log;
-log(sequelize);
-sequelize().then(() => {
-    console.log("Success!");
-    var Posts = sequelize.define('posts', {
-      title: {
-        type: Sequelize.STRING
-      },
-      content: {
-        type: Sequelize.STRING
-      }
-    }, {
-      freezeTableName: true
-    });
-  
-    Posts.sync({force: true}).then(function () {
-      return Posts.create({
-        title: 'Getting Started with PostgreSQL and Sequelize',
-        content: 'Hello there'
-      });
-    });
-  }).catch((err) => {
-    console.log(err);
-  });
+let Sequelize = require('sequelize')
+let sequelize=require('../configdb/postgresconnection')
+module.exports = sequelize.define('resolver', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  },
+  email: {
+    type: Sequelize.STRING
+  },
+  password: {
+    type: Sequelize.STRING
+  },
+  phone: {
+    type: Sequelize.STRING
+  }
+}, {
+  freezeTableName: true
+});

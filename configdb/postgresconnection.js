@@ -3,31 +3,38 @@ const sequelize = new Sequelize('testdb', 'testuser', 'testuser', {
   host: 'localhost',
   dialect: 'postgres',
   pool: {
-    max: 9,
+    max: 19,
     min: 0,
     idle: 10000
   }
 });
-sequelize.authenticate().then(() => {
-    console.log("Success!");
-    var Posts = sequelize.define('posts', {
-      title: {
-        type: Sequelize.STRING
-      },
-      content: {
-        type: Sequelize.STRING
-      }
-    }, {
-      freezeTableName: true
-    });
-  
-    Posts.sync({force: true}).then(function () {
-      return Posts.create({
-        title: 'Getting Started with PostgreSQL and Sequelize',
-        content: 'Hello there'
-      });
-    });
-  }).catch((err) => {
-    console.log(err);
-  });
-//module.exports.sequelize=sequelize.authenticate;
+module.exports=sequelize;
+     
+  //sequelize.close();
+// let obj = {};
+// obj.fname="Anshu";
+// obj.lname="Mishra";
+// obj.email="anshum45@gmail.com";
+// obj.phonenumber="7007975402";
+// obj.password="Anshum45";
+// console.log(obj);
+// var dbparams=function (req,res){
+    // obj.fname = req.body.fname;
+    // obj.lname = req.body.lname;
+    // obj.email = req.body.email;
+    // obj.phonenumber = req.body.phonenumber;
+    // obj.password = req.body.password;
+    
+// }
+//module.exports.dbparams = dbparams;
+
+// People.sync({force: true}).then(function () {
+//   return People.create({
+//     firstName: obj.fname,
+//     lastName: obj.lname,
+//     password: obj.password,
+//     email: obj.email,
+//     phone: obj.phonenumber
+    
+//   })
+// });
